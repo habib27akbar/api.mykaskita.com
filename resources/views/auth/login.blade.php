@@ -1,75 +1,118 @@
-<!doctype html>
-<html class="no-js" lang="">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>PT. GIB - ADMIN</title>
-    <meta name="description" content="PT. GIB - ADMIN">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!DOCTYPE html>
+	<html lang="en">
 
-    <link rel="apple-touch-icon" href="{{ asset('img/core-img/favicon.ico') }}">
-    <link rel="shortcut icon" href="{{ asset('img/core-img/favicon.ico') }}">
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	   
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="theme-color" content="#0134d4">
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/css/cs-skin-elastic.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+	    <title>.:: PT. GIB ::.</title>
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
-    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
-</head>
-<body class="bg-dark" style="background-image: url('{{ asset('img/slider/slide03.jpg') }}'); background-repeat: no-repeat; background-position: center; background-size: cover;">
+	    <!----------- Fonts ------------------->
+	    <link rel="preconnect" href="https://fonts.gstatic.com">
+	    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+	    <!------------------------------------------------------->
 
-    <div class="sufee-login d-flex align-content-center flex-wrap">
-        <div class="container">
-            <div class="login-content">
-                <div class="login-logo">
-                    <a href="index.html">
-                        <img class="align-content" src="images/logo.png" alt="">
-                    </a>
-                </div>
-                <div class="login-form">
-                    @include('include.admin.alert')
-                    <form action="{{ route('authenticate') }}" method="POST">
+
+	    <!------------------- Favicon ---------------------->
+	    <link rel="icon" href="{{ asset('img/core-img/favicon.ico') }}">
+	    <link rel="apple-touch-icon" href="{{ asset('img/icons/icon-96x96.png') }}">
+	    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('img/icons/icon-152x152.png') }}">
+	    <link rel="apple-touch-icon" sizes="167x167" href="{{ asset('img/icons/icon-167x167.png') }}">
+	    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/icons/icon-180x180.png') }}">
+	    <!--------------------------------------------->
+
+
+	    <!----------------------- CSS  -------------------------->
+	    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+	    <link rel="stylesheet" href="{{ asset('css/bootstrap-icons.css') }}">
+	    <link rel="stylesheet" href="{{ asset('css/tiny-slider.css') }}">
+	    <link rel="stylesheet" href="{{ asset('css/baguetteBox.min.css') }}">
+	    <link rel="stylesheet" href="{{ asset('css/rangeslider.css') }}">
+	    <link rel="stylesheet" href="{{ asset('css/vanilla-dataTables.min.css') }}">
+	    <link rel="stylesheet" href="{{ asset('css/apexcharts.css') }}">
+	    <link rel="stylesheet" href="{{ asset('style.css') }}">
+	    <link rel="manifest" href="{{ asset('manifest.json') }}">
+	    <!------------------------------------------------------>
+
+
+
+
+	</head>
+
+	<body>
+
+
+	    <!---------- Preloader ----------------->
+	    <div id="preloader">
+	        <div class="spinner-grow text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+	    </div>
+	    <!---------------------------------------------->
+
+	    <div class="internet-connection-status" id="internetStatus"></div>
+
+
+	    <!---------------------------------------------->
+	    <div class="login-wrapper d-flex align-items-center justify-content-center">
+	        <div class="custom-container">
+	            <div class="text-center px-4"><img class="login-intro-img" src="{{ asset('img/bg-img/login_bg.png') }}" alt=""></div>
+
+	            <div class="register-form mt-4">
+	                <form action="{{ route('authenticate') }}" method="POST">
                         @csrf
-                        <div class="form-group">
-                            <label>Username</label>
-                            <input type="text" class="form-control" name="username" placeholder="Username">
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="Password">
-                        </div>
-                        <div class="form-group">
+	                    <div class="form-group">
+	                        <input class="form-control" type="text" name="username" placeholder="Username">
+	                    </div>
+	                    <div class="form-group position-relative">
+	                        <input class="form-control" id="psw-input" type="password" name="password" placeholder="Enter Password">
+	                        <div class="position-absolute" id="password-visibility"><i class="bi bi-eye"></i><i class="bi bi-eye-slash"></i></div>
+	                    </div>
+                        <div class="form-group position-relative">
                             <img src="{{ captcha_src() }}" alt="CAPTCHA Image"><button type="button" onclick="refreshCaptcha()">🔄</button>
-                            <input type="text" class="form-control" name="captcha" placeholder="Captcha">
-                        </div>
-                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
-                        
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+	                        <input type="text" class="form-control" name="captcha" placeholder="Captcha">
+	                    </div>
+	                    <button class="btn btn-primary w-100" type="submit">LOGIN</button>
+	                </form>
+	            </div>
+	            <!---------------------------------------------->
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
-    <script>
-        function refreshCaptcha() {
-            fetch('{{ route("captcha.refresh") }}')
-                .then(response => response.json())
-                .then(data => {
-                    document.querySelector("img[alt='CAPTCHA Image']").src = data.captcha;
-                });
-        }
-    </script>
-</body>
-</html>
+
+
+	        </div>
+	    </div>
+
+
+
+
+	    <!-- All JavaScript Files -->
+	    <script src="{{ asset('js/bootstrap.bundle.min.js')}}"></script>
+	    <script src="{{ asset('js/slideToggle.min.js')}}"></script>
+	    <script src="{{ asset('js/internet-status.js')}}"></script>
+	    <script src="{{ asset('js/tiny-slider.js')}}"></script>
+	    <script src="{{ asset('js/baguetteBox.min.js')}}"></script>
+	    <script src="{{ asset('js/countdown.js')}}"></script>
+	    <script src="{{ asset('js/rangeslider.min.js')}}"></script>
+	    <script src="{{ asset('js/vanilla-dataTables.min.js')}}"></script>
+	    <script src="{{ asset('js/index.js')}}"></script>
+	    <script src="{{ asset('js/magic-grid.min.js')}}"></script>
+	    <script src="{{ asset('js/dark-rtl.js')}}"></script>
+	    <script src="{{ asset('js/active.js')}}"></script>
+	    <!-- PWA -->
+	    <script src="{{ asset('js/pwa.js')}}"></script>
+        <script>
+            function refreshCaptcha() {
+                fetch('{{ route("captcha.refresh") }}')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.querySelector("img[alt='CAPTCHA Image']").src = data.captcha;
+                    });
+            }
+        </script>
+	</body>
+
+	</html>

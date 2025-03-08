@@ -1,60 +1,36 @@
- <!-- Left Panel -->
-    <aside id="left-panel" class="left-panel">
-        <nav class="navbar navbar-expand-sm navbar-default">
-            <div id="main-menu" class="main-menu collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="{{ Request::is('home') ? 'active' : '' }}">
-                        <a href="{{ route('home') }}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
-                    </li>
-                    
-                    <li class="menu-item-has-children {{ Request::is('unit_kerja') || Request::is('auth') || Request::is('customer') ? 'active' : '' }} dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Master</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li class=""><i class="fa fa-building-o"></i> <a href="{{ route('unit_kerja.index') }}">Unit Kerja</a></li>
-                            <li><i class="fa fa-user"></i> <a href="{{ route('auth.index') }}">User</a></li>
-                            <li><i class="fa fa-users"></i> <a href="{{ route('customer.index') }}">Customer</a></li>
-                            <li><i class="fa fa-users"></i> <a href="{{ route('vendor_app.index') }}">Vendor</a></li>
-                            <li><i class="fa fa-inbox"></i> <a href="{{ route('produk.index') }}">Produk</a></li>
-                            
-                        </ul>
-                    </li>
-                    
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Data Transaksi</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="#">Order</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="#">Inventory</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="#">Kunjungan Teknisi</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="#">Komplain</a></li>
-                        </ul>
-                    </li>
+<!----------------- Menu SideBar ------------------------------------------->
+	    <div class="offcanvas offcanvas-start" id="affanOffcanvas" data-bs-scroll="true" tabindex="-1" aria-labelledby="affanOffcanvsLabel">
+	        <button class="btn-close btn-close-white text-reset" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+	        <div class="offcanvas-body p-0">
 
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-files-o"></i>Laporan</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-files-o"></i><a href="#">Rekap Order</a></li>
-                            <li><i class="fa fa-files-o"></i><a href="#">Rekap Customer</a></li>
-                            <li><i class="fa fa-files-o"></i><a href="#">Rekap Inventory</a></li>
-                            <li><i class="fa fa-files-o"></i><a href="#">Rekap Produk After Sales</a></li>
-                            <li><i class="fa fa-files-o"></i><a href="#">Rekap Komplain</a></li>
-                            <li><i class="fa fa-files-o"></i><a href="#">Rekap Pesan Masuk</a></li>
-                            <li><i class="fa fa-files-o"></i><a href="#">Rekap Kunjungan</a></li>
-                        </ul>
-                    </li>
-                   
-                    
-                       
-                    <li class="menu-item-has-children dropdown">
-                        <form action="{{ route('logout') }}" method="post">
-                            @csrf
-                            <button><i class="menu-icon fa fa-sign-out"></i>Log Out</button>
-                        
-                        </form>
-                    </li>
-                    
-                </ul>
-                
-            </div><!-- /.navbar-collapse -->
-        </nav>
-    </aside>
-    <!-- /#left-panel -->
+	            <div class="sidenav-wrapper">
+	                <div class="sidenav-profile bg-gradient">
+	                    <div class="sidenav-style1"></div>
+	                    <div class="user-profile"><img src="{{ asset('img/core-img/logo_profile.png') }}" alt=""></div>
+	                    <div class="user-info">
+	                        <h6 class="user-name mb-0">Gibrig Indonesia Bersih</h6>
+	                    </div>
+	                </div>
+
+	                <ul class="sidenav-nav ps-0">
+	                    <li><a href="#"><i class="bi bi-house-door"></i>Beranda</a></li><br>
+	                    <li><a href="#"><i class="bi bi-person"></i>Profile</a></li>
+	                    <li><a href="#"><i class="bi bi-book"></i>e-Catalog</a></li>
+	                    <li><a href="#"><i class="bi bi-gear"></i>Produk</a></li>
+	                    <li><a href="#"><i class="bi bi-chat-dots"></i>Komplain</a></li>
+	                    <li><a href="#"><i class="bi bi-map"></i>Kunjungan</a></li>
+	                    <li><a href="#"><i class="bi bi-envelope"></i>Kontak</a></li>
+                        <li>
+                            <div class="night-mode-nav"><i class="bi bi-moon"></i>Night Mode
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input form-check-success" id="darkSwitch" type="checkbox">
+                                </div>
+                            </div>
+	                    </li>
+	                    <li><a href="page-login.html"><i class="bi bi-box-arrow-right"></i>Logout</a></li>
+	                </ul>
+
+	            </div>
+	        </div>
+	    </div>
+	    <!----------------------------------------------------------->

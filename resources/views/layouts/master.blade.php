@@ -1,302 +1,135 @@
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>PT. GIB - ADMIN</title>
-        <meta name="description" content="PT. GIB - ADMIN">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+	<html lang="en">
 
-        <link rel="apple-touch-icon" href="{{ asset('img/core-img/favicon.ico') }}">
-        <link rel="shortcut icon" href="{{ asset('img/core-img/favicon.ico') }}">
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	   
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="theme-color" content="#0134d4">
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-        <link rel="stylesheet" href="{{ asset('assets/css/cs-skin-elastic.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/css/lib/datatable/dataTables.bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-        <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
+	    <title>.:: PT. GIB ::.</title>
 
-        <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
-        <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
 
-    <style>
-        #weatherWidget .currentDesc {
-            color: #ffffff!important;
-        }
-            .traffic-chart {
-                min-height: 335px;
-            }
-            #flotPie1  {
-                height: 150px;
-            }
-            #flotPie1 td {
-                padding:3px;
-            }
-            #flotPie1 table {
-                top: 20px!important;
-                right: -10px!important;
-            }
-            .chart-container {
-                display: table;
-                min-width: 270px ;
-                text-align: left;
-                padding-top: 10px;
-                padding-bottom: 10px;
-            }
-            #flotLine5  {
-                height: 105px;
-            }
+	    <!----------- Fonts ------------------->
+	    <link rel="preconnect" href="https://fonts.gstatic.com">
+	    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+	    <!------------------------------------------------------->
 
-            #flotBarChart {
-                height: 150px;
-            }
-            #cellPaiChart{
-                height: 160px;
-            }
 
-        </style>
-    </head>
+	    <!------------------- Favicon ---------------------->
+	    <link rel="icon" href="{{ asset('img/core-img/favicon.ico') }}">
+	    <link rel="apple-touch-icon" href="{{ asset('img/icons/icon-96x96.png') }}">
+	    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('img/icons/icon-152x152.png') }}">
+	    <link rel="apple-touch-icon" sizes="167x167" href="{{ asset('img/icons/icon-167x167.png') }}">
+	    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/icons/icon-180x180.png') }}">
+	    <!--------------------------------------------->
+
+
+	    <!----------------------- CSS  -------------------------->
+	    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+	    <link rel="stylesheet" href="{{ asset('css/bootstrap-icons.css') }}">
+	    <link rel="stylesheet" href="{{ asset('css/tiny-slider.css') }}">
+	    <link rel="stylesheet" href="{{ asset('css/baguetteBox.min.css') }}">
+	    <link rel="stylesheet" href="{{ asset('css/rangeslider.css') }}">
+	    <link rel="stylesheet" href="{{ asset('css/vanilla-dataTables.min.css') }}">
+	    <link rel="stylesheet" href="{{ asset('css/apexcharts.css') }}">
+	    <link rel="stylesheet" href="{{ asset('style.css') }}">
+	    <link rel="manifest" href="{{ asset('manifest.json') }}">
+	    <!------------------------------------------------------>
+
+
+
+
+	</head>
     <body>
-         @include('include.sidebar')
-         <div id="right-panel" class="right-panel">
-            @include('include.header')
-            @yield('content')
-            <div class="clearfix"></div>
-         </div>
-             <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
-    <script src="{{ asset('assets/js/lib/data-table/datatables.min.js')}}"></script>
-    <script src="{{ asset('assets/js/lib/data-table/dataTables.bootstrap.min.js')}}"></script>
-    <script src="{{ asset('assets/js/lib/data-table/dataTables.buttons.min.js')}}"></script>
-    <script src="{{ asset('assets/js/lib/data-table/buttons.bootstrap.min.js')}}"></script>
-    <script src="{{ asset('assets/js/lib/data-table/jszip.min.js')}}"></script>
-    <script src="{{ asset('assets/js/lib/data-table/vfs_fonts.js')}}"></script>
-    <script src="{{ asset('assets/js/lib/data-table/buttons.html5.min.js')}}"></script>
-    <script src="{{ asset('assets/js/lib/data-table/buttons.print.min.js')}}"></script>
-    <script src="{{ asset('assets/js/lib/data-table/buttons.colVis.min.js')}}"></script>
-    <script src="{{ asset('assets/js/init/datatables-init.js')}}"></script>
+         <!---------- Preloader ----------------->
+	    <div id="preloader">
+	        <div class="spinner-grow text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+	    </div>
+	    <!---------------------------------------------->
 
-    <!--  Chart js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
+	    <div class="internet-connection-status" id="internetStatus"></div>
+        <!-- Dark mode switching -->
+	    <div class="dark-mode-switching">
+	        <div class="d-flex w-100 h-100 align-items-center justify-content-center">
+	            <div class="dark-mode-text text-center">
+	                <svg class="bi bi-moon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+	                    <path fill-rule="evenodd" d="M14.53 10.53a7 7 0 0 1-9.058-9.058A7.003 7.003 0 0 0 8 15a7.002 7.002 0 0 0 6.53-4.47z"></path>
+	                </svg>
+	                <p class="mb-0">Switching to dark mode</p>
+	            </div>
+	            <div class="light-mode-text text-center">
+	                <svg class="bi bi-brightness-high" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16">
+	                    <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
+	                </svg>
+	                <p class="mb-0">Switching to light mode</p>
+	            </div>
+	        </div>
+	    </div>
+	    <!-- RTL mode switching -->
+	    <div class="rtl-mode-switching">
+	        <div class="d-flex w-100 h-100 align-items-center justify-content-center">
+	            <div class="rtl-mode-text text-center">
+	                <svg class="bi bi-text-right" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+	                    <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-4-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm4-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-4-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"></path>
+	                </svg>
+	                <p class="mb-0">Switching to RTL mode</p>
+	            </div>
+	            <div class="ltr-mode-text text-center">
+	                <svg class="bi bi-text-left" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+	                    <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"></path>
+	                </svg>
+	                <p class="mb-0">Switching to default mode</p>
+	            </div>
+	        </div>
+	    </div>
+	    <!-- Setting Popup Overlay -->
+	    <div id="setting-popup-overlay"></div>
+	    <!-- Setting Popup Card -->
+	    <div class="card setting-popup-card shadow-lg" id="settingCard">
+	        <div class="card-body">
+	            <div class="container">
+	                <div class="setting-heading d-flex align-items-center justify-content-between mb-3">
+	                    <p class="mb-0">Settings</p>
+	                    <div class="btn-close" id="settingCardClose"></div>
+	                </div>
+	                
+	                <div class="single-setting-panel">
+	                    <div class="form-check form-switch mb-2">
+	                        <input class="form-check-input" type="checkbox" id="darkSwitch">
+	                        <label class="form-check-label" for="darkSwitch">Dark mode</label>
+	                    </div>
+	                </div>
+	                <div class="single-setting-panel">
+	                    <div class="form-check form-switch">
+	                        <input class="form-check-input" type="checkbox" id="rtlSwitch">
+	                        <label class="form-check-label" for="rtlSwitch">RTL mode</label>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
 
-    <!--Chartist Chart-->
-    <script src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartist-plugin-legend@0.6.2/chartist-plugin-legend.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
-    <script src="{{ asset('assets/js/init/weather-init.js') }}"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
-    <script src="{{ asset('assets/js/init/fullcalendar-init.js') }}"></script>
-
-    <!--Local Stuff-->
-    <script>
-        $(document).ready(function() {
-          $('#bootstrap-data-table-export').DataTable();
-        } );
-        jQuery(document).ready(function($) {
-            "use strict";
-
-            // Pie chart flotPie1
-            var piedata = [
-                { label: "Desktop visits", data: [[1,32]], color: '#5c6bc0'},
-                { label: "Tab visits", data: [[1,33]], color: '#ef5350'},
-                { label: "Mobile visits", data: [[1,35]], color: '#66bb6a'}
-            ];
-
-            $.plot('#flotPie1', piedata, {
-                series: {
-                    pie: {
-                        show: true,
-                        radius: 1,
-                        innerRadius: 0.65,
-                        label: {
-                            show: true,
-                            radius: 2/3,
-                            threshold: 1
-                        },
-                        stroke: {
-                            width: 0
-                        }
-                    }
-                },
-                grid: {
-                    hoverable: true,
-                    clickable: true
-                }
-            });
-            // Pie chart flotPie1  End
-            // cellPaiChart
-            var cellPaiChart = [
-                { label: "Direct Sell", data: [[1,65]], color: '#5b83de'},
-                { label: "Channel Sell", data: [[1,35]], color: '#00bfa5'}
-            ];
-            $.plot('#cellPaiChart', cellPaiChart, {
-                series: {
-                    pie: {
-                        show: true,
-                        stroke: {
-                            width: 0
-                        }
-                    }
-                },
-                legend: {
-                    show: false
-                },grid: {
-                    hoverable: true,
-                    clickable: true
-                }
-
-            });
-            // cellPaiChart End
-            // Line Chart  #flotLine5
-            var newCust = [[0, 3], [1, 5], [2,4], [3, 7], [4, 9], [5, 3], [6, 6], [7, 4], [8, 10]];
-
-            var plot = $.plot($('#flotLine5'),[{
-                data: newCust,
-                label: 'New Data Flow',
-                color: '#fff'
-            }],
-            {
-                series: {
-                    lines: {
-                        show: true,
-                        lineColor: '#fff',
-                        lineWidth: 2
-                    },
-                    points: {
-                        show: true,
-                        fill: true,
-                        fillColor: "#ffffff",
-                        symbol: "circle",
-                        radius: 3
-                    },
-                    shadowSize: 0
-                },
-                points: {
-                    show: true,
-                },
-                legend: {
-                    show: false
-                },
-                grid: {
-                    show: false
-                }
-            });
-            // Line Chart  #flotLine5 End
-            // Traffic Chart using chartist
-            if ($('#traffic-chart').length) {
-                var chart = new Chartist.Line('#traffic-chart', {
-                  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                  series: [
-                  [0, 18000, 35000,  25000,  22000,  0],
-                  [0, 33000, 15000,  20000,  15000,  300],
-                  [0, 15000, 28000,  15000,  30000,  5000]
-                  ]
-              }, {
-                  low: 0,
-                  showArea: true,
-                  showLine: false,
-                  showPoint: false,
-                  fullWidth: true,
-                  axisX: {
-                    showGrid: true
-                }
-            });
-
-                chart.on('draw', function(data) {
-                    if(data.type === 'line' || data.type === 'area') {
-                        data.element.animate({
-                            d: {
-                                begin: 2000 * data.index,
-                                dur: 2000,
-                                from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
-                                to: data.path.clone().stringify(),
-                                easing: Chartist.Svg.Easing.easeOutQuint
-                            }
-                        });
-                    }
-                });
-            }
-            // Traffic Chart using chartist End
-            //Traffic chart chart-js
-            if ($('#TrafficChart').length) {
-                var ctx = document.getElementById( "TrafficChart" );
-                ctx.height = 150;
-                var myChart = new Chart( ctx, {
-                    type: 'line',
-                    data: {
-                        labels: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul" ],
-                        datasets: [
-                        {
-                            label: "Visit",
-                            borderColor: "rgba(4, 73, 203,.09)",
-                            borderWidth: "1",
-                            backgroundColor: "rgba(4, 73, 203,.5)",
-                            data: [ 0, 2900, 5000, 3300, 6000, 3250, 0 ]
-                        },
-                        {
-                            label: "Bounce",
-                            borderColor: "rgba(245, 23, 66, 0.9)",
-                            borderWidth: "1",
-                            backgroundColor: "rgba(245, 23, 66,.5)",
-                            pointHighlightStroke: "rgba(245, 23, 66,.5)",
-                            data: [ 0, 4200, 4500, 1600, 4200, 1500, 4000 ]
-                        },
-                        {
-                            label: "Targeted",
-                            borderColor: "rgba(40, 169, 46, 0.9)",
-                            borderWidth: "1",
-                            backgroundColor: "rgba(40, 169, 46, .5)",
-                            pointHighlightStroke: "rgba(40, 169, 46,.5)",
-                            data: [1000, 5200, 3600, 2600, 4200, 5300, 0 ]
-                        }
-                        ]
-                    },
-                    options: {
-                        responsive: true,
-                        tooltips: {
-                            mode: 'index',
-                            intersect: false
-                        },
-                        hover: {
-                            mode: 'nearest',
-                            intersect: true
-                        }
-
-                    }
-                } );
-            }
-            //Traffic chart chart-js  End
-            // Bar Chart #flotBarChart
-            $.plot("#flotBarChart", [{
-                data: [[0, 18], [2, 8], [4, 5], [6, 13],[8,5], [10,7],[12,4], [14,6],[16,15], [18, 9],[20,17], [22,7],[24,4], [26,9],[28,11]],
-                bars: {
-                    show: true,
-                    lineWidth: 0,
-                    fillColor: '#ffffff8a'
-                }
-            }], {
-                grid: {
-                    show: false
-                }
-            });
-            // Bar Chart #flotBarChart End
-        });
-    </script>
+        @include('include.header')
+        @yield('content')
+        @include('include.footer')
+        <!-- Scripts -->
+        <script src="{{ asset('js/bootstrap.bundle.min.js')}}"></script>
+	    <script src="{{ asset('js/slideToggle.min.js')}}"></script>
+	    <script src="{{ asset('js/internet-status.js')}}"></script>
+	    <script src="{{ asset('js/tiny-slider.js')}}"></script>
+	    <script src="{{ asset('js/baguetteBox.min.js')}}"></script>
+	    <script src="{{ asset('js/countdown.js')}}"></script>
+	    <script src="{{ asset('js/rangeslider.min.js')}}"></script>
+	    <script src="{{ asset('js/vanilla-dataTables.min.js')}}"></script>
+	    <script src="{{ asset('js/index.js')}}"></script>
+	    <script src="{{ asset('js/magic-grid.min.js')}}"></script>
+	    <script src="{{ asset('js/dark-rtl.js')}}"></script>
+	    <script src="{{ asset('js/active.js')}}"></script>
+	    <!-- PWA -->
+	    <script src="{{ asset('js/pwa.js')}}"></script>
     </body>
 </html>
