@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KomplainController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\UnitKerjaController;
 use App\Http\Controllers\VendorController;
@@ -46,8 +47,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::resource('auth', AuthController::class);
-    Route::resource('unit_kerja', UnitKerjaController::class);
-    Route::resource('customer', CustomerController::class);
-    Route::resource('vendor_app', VendorController::class);
-    Route::resource('produk', ProdukController::class);
+    Route::resource('komplain', KomplainController::class);
+    Route::get('/api/komplain', [KomplainController::class, 'getKomplain']);
 });

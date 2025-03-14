@@ -1,27 +1,36 @@
 @if(Session::has('alert-success'))
-    <div class="sufee-alert alert with-close alert-primary alert-dismissible fade show">
-        <span class="badge badge-pill badge-primary">Success !</span>
-        {{Session::get('alert-success')}}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<div class="shop-pagination pb-3">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="alert alert-primary">
+                {{Session::get('alert-success')}}
+            </div>
+        </div>
     </div>
+</div>
+        
+    
     
 @elseif(Session::has('alert-danger'))
+<div class="shop-pagination pb-3">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="alert alert-danger">
+                {{Session::get('alert-danger')}}
+            </div>
+        </div>
+    </div>
+</div>
+
     
-    <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
-        <span class="badge badge-pill badge-danger">Failed !</span>
-        {{Session::get('alert-danger')}}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
 @elseif(Session::has('alert-warning'))
-    <div class="sufee-alert alert with-close alert-warning alert-dismissible fade show">
-        <span class="badge badge-pill badge-warning">Warning !</span>
-        {{Session::get('alert-warning')}}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<div class="shop-pagination pb-3">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="alert alert-warning">
+                {{Session::get('alert-warning')}}
+            </div>
+        </div>
     </div>
+</div>
 @endif

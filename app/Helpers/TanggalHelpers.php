@@ -42,13 +42,27 @@ class TanggalHelper
     public function get_day_name($tanggal)
     {
         $days = [
-            'Sunday' => 'Minggu', 'Monday' => 'Senin', 'Tuesday' => 'Selasa',
-            'Wednesday' => 'Rabu', 'Thursday' => 'Kamis', 'Friday' => 'Jumat', 'Saturday' => 'Sabtu'
+            'Sunday' => 'Minggu',
+            'Monday' => 'Senin',
+            'Tuesday' => 'Selasa',
+            'Wednesday' => 'Rabu',
+            'Thursday' => 'Kamis',
+            'Friday' => 'Jumat',
+            'Saturday' => 'Sabtu'
         ];
 
         $date = new DateTime($tanggal);
         $dayName = $date->format('l'); // Get the day name in English
 
         return isset($days[$dayName]) ? $days[$dayName] : null;
+    }
+
+    function get_date_time($tanggal)
+    {
+        $ex = explode(" ", $tanggal);
+        $explode = explode("-", $ex[0]);
+        $get_date = $explode[2] . '/' . $explode[1] . '/' . $explode[0] . ' ' . substr($ex[1], 0, 5);
+
+        return $get_date;
     }
 }

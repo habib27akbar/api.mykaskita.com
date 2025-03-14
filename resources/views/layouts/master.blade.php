@@ -131,5 +131,6 @@
 	    <script src="{{ asset('js/active.js')}}"></script>
 	    <!-- PWA -->
 	    <script src="{{ asset('js/pwa.js')}}"></script>
+		@yield('js')
     </body>
 </html>

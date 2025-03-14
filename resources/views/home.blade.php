@@ -165,7 +165,7 @@
 
 	                        <div class="col-4">
 	                            <div class="feature-card mx-auto text-center">
-	                                <a href="komplain.html">
+	                                <a href="{{ route('komplain.index') }}">
 	                                    <div class="card mx-auto bg-primary "><img src="{{ asset('img/icons/komplain.png') }}" alt=""></div>
 	                                </a>
 	                                <p class="mb-0">Komplain</p>
