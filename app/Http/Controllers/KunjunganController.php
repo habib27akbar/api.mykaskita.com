@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absen;
 use Illuminate\Http\Request;
 use App\Models\Kunjungan;
 use Carbon\Carbon;
@@ -28,6 +29,15 @@ class KunjunganController extends Controller
         $kunjungan = Kunjungan::findOrFail($id);
 
         return view('kunjungan.edit', compact('kunjungan'));
+    }
+
+    public function show($id)
+    {
+        //$foto = Slider::all();
+        //dd($sejarah);
+        $kunjungan = Kunjungan::findOrFail($id);
+
+        return view('kunjungan.view', compact('kunjungan'));
     }
 
     public function store(Request $request)
@@ -94,6 +104,31 @@ class KunjunganController extends Controller
         return redirect('kunjungan')->with('alert-success', 'Success Update Data');
     }
 
+    public function absen(Request $request, $id)
+    {
+
+        $nama_image = $request->input('gambar_old');
+        if ($request->file('gambar')) {
+            $image = $request->file('gambar');
+            $nama_image = 'gambar-' . uniqid() . '-' . $image->getClientOriginalName();
+            $dir = 'img/absensi';
+            $image->move(public_path($dir), $nama_image);
+        }
+
+
+
+        $storeData = [
+            'user_id' => auth()->id(),
+            'id_kunjungan' => $id,
+            'longitude' => $request->input('longitude'),
+            'latitude' => $request->input('latitude'),
+            'gambar' => $nama_image,
+
+        ];
+        Absen::create($storeData);
+        return redirect('kunjungan')->with('alert-success', 'Success Update Data');
+    }
+
     public function destroy($id)
     {
         Kunjungan::findOrFail($id)->delete();
@@ -104,19 +139,22 @@ class KunjunganController extends Controller
     {
         $sort = $request->query('sort', 'newest'); // Default sort: newest
 
-        $query = Kunjungan::query();
+        $query = Kunjungan::query()
+            ->where('kunjungan.user_id', auth()->id())
+            ->leftJoin('absen', 'absen.id_kunjungan', '=', 'kunjungan.id')
+            ->select('kunjungan.*', 'absen.gambar as gambar_absen');
 
         if ($request->has('search') && !empty($request->search)) {
             $search = strtolower($request->search); // Konversi ke huruf kecil untuk pencarian tidak case-sensitive
-            $query->whereRaw('LOWER(pesan) LIKE ?', ["%{$search}%"]);
+            $query->whereRaw('LOWER(kunjungan.catatan) LIKE ?', ["%{$search}%"]);
         }
 
         if ($sort === 'oldest') {
-            $query->orderByRaw('COALESCE(updated_at, created_at) ASC');
+            $query->orderByRaw('COALESCE(kunjungan.updated_at, kunjungan.created_at) ASC');
         } elseif ($sort === 'newest') {
-            $query->orderByRaw('COALESCE(updated_at, created_at) DESC');
+            $query->orderByRaw('COALESCE(kunjungan.updated_at, kunjungan.created_at) DESC');
         } else {
-            $query->orderBy('created_at', 'desc');
+            $query->orderBy('kunjungan.created_at', 'desc');
         }
 
         $komplain = $query->paginate(10); // 6 data per halaman

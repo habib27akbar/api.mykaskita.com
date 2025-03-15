@@ -49,4 +49,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/api/komplain', [KomplainController::class, 'getKomplain']);
     Route::resource('kunjungan', KunjunganController::class);
     Route::get('/api/kunjungan', [KunjunganController::class, 'getKunjungan']);
+    Route::post('/kunjungan/{kunjungan}/absen', [KunjunganController::class, 'absen'])
+        ->name('kunjungan.absen');
 });
