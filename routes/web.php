@@ -1,15 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\KomplainController;
-use App\Http\Controllers\ProdukController;
-use App\Http\Controllers\UnitKerjaController;
-use App\Http\Controllers\VendorController;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KomplainController;
+use App\Http\Controllers\KunjunganController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,4 +47,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('auth', AuthController::class);
     Route::resource('komplain', KomplainController::class);
     Route::get('/api/komplain', [KomplainController::class, 'getKomplain']);
+    Route::resource('kunjungan', KunjunganController::class);
+    Route::get('/api/kunjungan', [KunjunganController::class, 'getKunjungan']);
 });

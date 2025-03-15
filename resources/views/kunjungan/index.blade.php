@@ -9,8 +9,8 @@
 				<div class="container">
 					
                     <div class="d-flex align-items-center justify-content-between">
-                        <a href="{{ route('komplain.create') }}" class="btn btn-primary">Tambah</a>
-                         <input type="text" id="search-input" class="form-control" placeholder="Cari Komplain..." style="max-width: 300px;">
+                        <a href="{{ route('kunjungan.create') }}" class="btn btn-primary">Tambah</a>
+                         <input type="text" id="search-input" class="form-control" placeholder="Cari kunjungan..." style="max-width: 300px;">
                     </div>
                             
 						
@@ -77,86 +77,39 @@
         });
     });
 
-// function loadProducts(sort = 'newest', page = 1, search = '') {
-//     fetch(`{{ url('/api/komplain') }}?sort=${sort}&page=${page}&search=${encodeURIComponent(search)}`)
-//         .then(response => response.json())
-//         .then(data => {
-//             const komplainContainer = document.querySelector(".top-products-area .container .row");
-//             komplainContainer.innerHTML = "";
-
-//             data.data.forEach(komplain => {
-//                  //console.log(komplain.created_at_formatted);
-//                 const assetPath = "{{ asset('img/komplain/') }}";
-//                 const urlPath = "{{ url('/komplain/') }}";
-//                 komplainContainer.innerHTML += `
-//                     <div class="col-12">
-//                         <div class="card single-product-card">
-//                             <div class="card-body">
-//                                 <div class="d-flex align-items-center">
-//                                     <div class="card-side-img">
-//                                         <a class="product-thumbnail d-block" href="${urlPath}/${komplain.id}/edit">
-//                                             <img src="${assetPath}/${komplain.gambar}">
-//                                         </a>
-//                                     </div>
-//                                     <div class="card-content px-4 py-2">
-//                                         <a class="product-title d-block text-truncate mt-0" href="${urlPath}/${komplain.id}/edit">
-//                                             ${komplain.pesan}
-//                                         </a>
-//                                         <a class="btn btn-outline-info btn-sm" href="#">
-//                                             ${komplain.updated_at_formatted ? komplain.updated_at_formatted : komplain.created_at_formatted}
-//                                         </a>
-//                                     </div>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 `;
-//             });
-
-//             updatePagination(data);
-
-//             // Update teks "Showing x of y"
-//             document.querySelector(".showing-info").innerText = `Showing ${data.data.length} of ${data.total}`;
-//         })
-//         .catch(error => console.error("Error fetching products:", error));
-// }
-
-// // Event listener untuk pencarian
-// document.getElementById("search-input").addEventListener("input", function() {
-//     const searchQuery = this.value.trim();
-//     loadProducts('newest', 1, searchQuery); // Panggil loadProducts() dengan parameter pencarian
-// });
 
 function loadProducts(sort = 'newest', page = 1, search = '') {
-    const apiUrl = `{{ url('/api/komplain') }}?sort=${sort}&page=${page}&search=${encodeURIComponent(search)}`;
+    const apiUrl = `{{ url('/api/kunjungan') }}?sort=${sort}&page=${page}&search=${encodeURIComponent(search)}`;
 
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            const komplainContainer = document.querySelector(".top-products-area .container .row");
-            komplainContainer.innerHTML = "";
+            const kunjunganContainer = document.querySelector(".top-products-area .container .row");
+            kunjunganContainer.innerHTML = "";
 
             if (data.data.length > 0) {
-                data.data.forEach(komplain => {
-                    const assetPath = "{{ asset('img/komplain/') }}";
-                    const urlPath = "{{ url('/komplain/') }}";
+                data.data.forEach(kunjungan => {
+                    const assetPath = "{{ asset('img/kunjungan/') }}";
+                    const urlPath = "{{ url('/kunjungan/') }}";
 
-                    komplainContainer.innerHTML += `
+                    kunjunganContainer.innerHTML += `
                         <div class="col-12">
                             <div class="card single-product-card">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="card-side-img">
-                                            <a class="product-thumbnail d-block" href="${urlPath}/${komplain.id}/edit">
-                                                <img src="${assetPath}/${komplain.gambar}">
+                                            <a class="product-thumbnail d-block" href="${urlPath}/${kunjungan.id}/edit">
+                                                <img src="${assetPath}/${kunjungan.gambar}">
                                             </a>
                                         </div>
                                         <div class="card-content px-4 py-2">
-                                            <a class="product-title d-block text-truncate mt-0" href="${urlPath}/${komplain.id}/edit">
-                                                ${komplain.pesan}
+                                            <a class="product-title d-block text-truncate mt-0" href="${urlPath}/${kunjungan.id}/edit">
+                                                ${kunjungan.tempat}
+                                                <br/>
+                                                ${kunjungan.catatan}
                                             </a>
                                             <a class="btn btn-outline-info btn-sm" href="#">
-                                                ${komplain.updated_at_formatted ? komplain.updated_at_formatted : komplain.created_at_formatted}
+                                                ${kunjungan.updated_at_formatted ? kunjungan.updated_at_formatted : kunjungan.created_at_formatted}
                                             </a>
                                         </div>
                                     </div>

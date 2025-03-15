@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKomplain extends Migration
+class CreateKunjungan extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateKomplain extends Migration
      */
     public function up()
     {
-        Schema::create('komplain', function (Blueprint $table) {
+        Schema::create('kunjungan', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
             $table->integer('user_confirm')->nullable();
-            $table->text('pesan');
+            $table->text('catatan')->nullable();
+            $table->string('gambar');
+            $table->integer('sts');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateKomplain extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('komplain');
+        Schema::dropIfExists('kunjungan');
     }
 }
