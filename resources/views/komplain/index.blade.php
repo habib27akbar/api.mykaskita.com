@@ -9,10 +9,8 @@
 				<div class="container">
 					
                     <div class="d-flex align-items-center justify-content-between">
-                        
-                            
-
-                        <a href="{{ route('komplain.create') }}" class="btn btn-primary mb-3">Tambah</a>
+                        <a href="{{ route('komplain.create') }}" class="btn btn-primary">Tambah</a>
+                         <input type="text" id="search-input" class="form-control" placeholder="Cari Komplain..." style="max-width: 300px;">
                     </div>
                             
 						
@@ -91,48 +89,126 @@
         });
     });
 
-function loadProducts(sort = 'newest', page = 1) {
-    fetch(`{{ url('/api/komplain') }}?sort=${sort}&page=${page}`)
+// function loadProducts(sort = 'newest', page = 1, search = '') {
+//     fetch(`{{ url('/api/komplain') }}?sort=${sort}&page=${page}&search=${encodeURIComponent(search)}`)
+//         .then(response => response.json())
+//         .then(data => {
+//             const komplainContainer = document.querySelector(".top-products-area .container .row");
+//             komplainContainer.innerHTML = "";
+
+//             data.data.forEach(komplain => {
+//                  //console.log(komplain.created_at_formatted);
+//                 const assetPath = "{{ asset('img/komplain/') }}";
+//                 const urlPath = "{{ url('/komplain/') }}";
+//                 komplainContainer.innerHTML += `
+//                     <div class="col-12">
+//                         <div class="card single-product-card">
+//                             <div class="card-body">
+//                                 <div class="d-flex align-items-center">
+//                                     <div class="card-side-img">
+//                                         <a class="product-thumbnail d-block" href="${urlPath}/${komplain.id}/edit">
+//                                             <img src="${assetPath}/${komplain.gambar}">
+//                                         </a>
+//                                     </div>
+//                                     <div class="card-content px-4 py-2">
+//                                         <a class="product-title d-block text-truncate mt-0" href="${urlPath}/${komplain.id}/edit">
+//                                             ${komplain.pesan}
+//                                         </a>
+//                                         <a class="btn btn-outline-info btn-sm" href="#">
+//                                             ${komplain.updated_at_formatted ? komplain.updated_at_formatted : komplain.created_at_formatted}
+//                                         </a>
+//                                     </div>
+//                                 </div>
+//                             </div>
+//                         </div>
+//                     </div>
+//                 `;
+//             });
+
+//             updatePagination(data);
+
+//             // Update teks "Showing x of y"
+//             document.querySelector(".showing-info").innerText = `Showing ${data.data.length} of ${data.total}`;
+//         })
+//         .catch(error => console.error("Error fetching products:", error));
+// }
+
+// // Event listener untuk pencarian
+// document.getElementById("search-input").addEventListener("input", function() {
+//     const searchQuery = this.value.trim();
+//     loadProducts('newest', 1, searchQuery); // Panggil loadProducts() dengan parameter pencarian
+// });
+
+function loadProducts(sort = 'newest', page = 1, search = '') {
+    const apiUrl = `{{ url('/api/komplain') }}?sort=${sort}&page=${page}&search=${encodeURIComponent(search)}`;
+
+    fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
             const komplainContainer = document.querySelector(".top-products-area .container .row");
             komplainContainer.innerHTML = "";
 
-            data.data.forEach(komplain => {
-                 //console.log(komplain.created_at_formatted);
-                komplainContainer.innerHTML += `
-                    <div class="col-12">
-                        <div class="card single-product-card">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div class="card-side-img">
-                                        <a class="product-thumbnail d-block" href="catalog-detail.html?id=${komplain.id}">
-                                            <img src="${komplain.gambar}">
-                                        </a>
-                                    </div>
-                                    <div class="card-content px-4 py-2">
-                                        <a class="product-title d-block text-truncate mt-0" href="${komplain.id}">
-                                            ${komplain.pesan}
-                                        </a>
-                                        <a class="btn btn-outline-info btn-sm" href="#">
-                                            ${komplain.updated_at_formatted ? komplain.updated_at_formatted : komplain.created_at_formatted}
-                                        </a>
+            if (data.data.length > 0) {
+                data.data.forEach(komplain => {
+                    const assetPath = "{{ asset('img/komplain/') }}";
+                    const urlPath = "{{ url('/komplain/') }}";
+
+                    komplainContainer.innerHTML += `
+                        <div class="col-12">
+                            <div class="card single-product-card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-side-img">
+                                            <a class="product-thumbnail d-block" href="${urlPath}/${komplain.id}/edit">
+                                                <img src="${assetPath}/${komplain.gambar}">
+                                            </a>
+                                        </div>
+                                        <div class="card-content px-4 py-2">
+                                            <a class="product-title d-block text-truncate mt-0" href="${urlPath}/${komplain.id}/edit">
+                                                ${komplain.pesan}
+                                            </a>
+                                            <a class="btn btn-outline-info btn-sm" href="#">
+                                                ${komplain.updated_at_formatted ? komplain.updated_at_formatted : komplain.created_at_formatted}
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                `;
-            });
+                    `;
+                });
+
+                document.querySelector(".showing-info").innerText = `Menampilkan ${data.data.length} dari ${data.total}`;
+            } else {
+                document.querySelector(".showing-info").innerText = "Tidak ada hasil yang ditemukan.";
+            }
 
             updatePagination(data);
-
-            // Update teks "Showing x of y"
-            document.querySelector(".showing-info").innerText = `Showing ${data.data.length} of ${data.total}`;
         })
         .catch(error => console.error("Error fetching products:", error));
 }
 
+// Fungsi debounce untuk mencegah request berulang saat mengetik
+function debounce(func, delay) {
+    let timer;
+    return function () {
+        const context = this, args = arguments;
+        clearTimeout(timer);
+        timer = setTimeout(() => func.apply(context, args), delay);
+    };
+}
+
+// Event listener untuk input pencarian
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("search-input");
+
+    if (searchInput) {
+        searchInput.addEventListener("keyup", debounce(function () {
+            const searchQuery = this.value.trim();
+            loadProducts('newest', 1, searchQuery);
+        }, 500)); // Tunggu 500ms sebelum memanggil API
+    }
+});
 
 
 function updatePagination(data) {

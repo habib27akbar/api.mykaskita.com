@@ -21,13 +21,22 @@ class KomplainController extends Controller
         return view('komplain.create');
     }
 
+    public function edit($id)
+    {
+        //$foto = Slider::all();
+        //dd($sejarah);
+        $komplain = Komplain::findOrFail($id);
+
+        return view('komplain.edit', compact('komplain'));
+    }
+
     public function store(Request $request)
     {
         $nama_image = null;
         if ($request->file('gambar')) {
             $image = $request->file('gambar');
             $nama_image = 'gambar-' . uniqid() . '-' . $image->getClientOriginalName();
-            $dir = 'img/produk';
+            $dir = 'img/komplain';
             $image->move(public_path($dir), $nama_image);
         }
 
@@ -41,11 +50,41 @@ class KomplainController extends Controller
         return redirect('komplain')->with('alert-success', 'Success Tambah Data');
     }
 
+    public function update(Request $request, $id)
+    {
+
+        $nama_image = $request->input('gambar_old');
+        if ($request->file('gambar')) {
+            $image = $request->file('gambar');
+            $nama_image = 'gambar-' . uniqid() . '-' . $image->getClientOriginalName();
+            $dir = 'img/komplain';
+            $image->move(public_path($dir), $nama_image);
+        }
+        $updateData = [
+            'user_id' => auth()->id(),
+            'pesan' => $request->input('pesan'),
+            'gambar' => $nama_image
+        ];
+        Komplain::where('id', $id)->update($updateData);
+        return redirect('komplain')->with('alert-success', 'Success Update Data');
+    }
+
+    public function destroy($id)
+    {
+        Komplain::findOrFail($id)->delete();
+        return redirect('komplain')->with('alert-success', 'Success deleted data');
+    }
+
     public function getKomplain(Request $request)
     {
         $sort = $request->query('sort', 'newest'); // Default sort: newest
 
         $query = Komplain::query();
+
+        if ($request->has('search') && !empty($request->search)) {
+            $search = strtolower($request->search); // Konversi ke huruf kecil untuk pencarian tidak case-sensitive
+            $query->whereRaw('LOWER(pesan) LIKE ?', ["%{$search}%"]);
+        }
 
         if ($sort === 'oldest') {
             $query->orderByRaw('COALESCE(updated_at, created_at) ASC');
@@ -55,7 +94,7 @@ class KomplainController extends Controller
             $query->orderBy('created_at', 'desc');
         }
 
-        $komplain = $query->paginate(6); // 6 data per halaman
+        $komplain = $query->paginate(10); // 6 data per halaman
 
         // Format tanggal tanpa menghilangkan pagination
         $komplain->getCollection()->map(function ($item) {
