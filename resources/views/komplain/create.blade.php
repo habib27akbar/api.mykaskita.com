@@ -18,7 +18,19 @@
 									</label>
 									<input style="opacity: 0; position: absolute; width: 1px; height: 1px;" id="file-input" class="form-control" type="file" name="gambar" accept="image/*" onchange="loadFile(event)" required>
 									<img id="preview" style="display: none; max-width: 100px; margin-top: 10px;" />
-									<p id="error-message" style="color: red; display: none;">File gambar wajib diunggah!</p>
+									
+								</div>
+
+								<div class="form-group mb-3">
+									
+									<label for="file-input-galeri">
+										<img src="{{ asset('img/1375106.png') }}" style="width: 14%" alt="Camera Icon">
+									</label>
+									<input style="opacity: 0; position: absolute; width: 1px; height: 1px;" id="file-input-galeri" class="form-control" type="file" name="gambar_galeri" accept="image/*" onchange="loadFileGaleri(event)">
+									<img id="preview_galeri" style="display: none; max-width: 100px; margin-top: 10px;" />
+									
+									
+									
 								</div>
 
 								<div class="form-group mb-3">
@@ -33,23 +45,20 @@
 		</div>
 @section('js')
 <script>
-    document.getElementById("komplainForm").addEventListener("submit", function(event) {
-        const fileInput = document.getElementById("file-input");
-        const errorMessage = document.getElementById("error-message");
-
-        if (!fileInput.files.length) {
-            errorMessage.style.display = "block"; // Tampilkan pesan error
-            event.preventDefault(); // Mencegah form terkirim
-        } else {
-            errorMessage.style.display = "none"; // Sembunyikan pesan jika file dipilih
-        }
-    });
+    
 
     function loadFile(event) {
         const output = document.getElementById("preview");
         output.style.display = "block";
         output.src = URL.createObjectURL(event.target.files[0]);
         document.getElementById("error-message").style.display = "none"; // Sembunyikan pesan error jika file dipilih
+    }
+
+	function loadFileGaleri(event) {
+        const output = document.getElementById("preview_galeri");
+        output.style.display = "block";
+        output.src = URL.createObjectURL(event.target.files[0]);
+        
     }
 </script>
 @endsection

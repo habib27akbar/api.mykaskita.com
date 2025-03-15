@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFieldGambar extends Migration
+class CreateGambarGaleri extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class AddFieldGambar extends Migration
      */
     public function up()
     {
-        Schema::table('komplain', function (Blueprint $table) {
-            $table->string('gambar')->after('pesan')->nullable();
+        Schema::table('kunjungan', function (Blueprint $table) {
             $table->string('gambar_galeri')->after('gambar')->nullable();
-            $table->integer('sts');
         });
     }
 
@@ -27,7 +25,7 @@ class AddFieldGambar extends Migration
      */
     public function down()
     {
-        Schema::table('komplain', function (Blueprint $table) {
+        Schema::table('kunjungan', function (Blueprint $table) {
             //
         });
     }

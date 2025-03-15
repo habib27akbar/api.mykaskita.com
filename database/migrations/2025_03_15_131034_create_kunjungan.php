@@ -18,7 +18,7 @@ class CreateKunjungan extends Migration
             $table->integer('user_id');
             $table->integer('user_confirm')->nullable();
             $table->text('catatan')->nullable();
-            $table->string('gambar');
+            $table->string('gambar')->nullable();
             $table->integer('sts');
             $table->timestamps();
         });
