@@ -128,7 +128,7 @@ function loadProducts(sort = 'newest', page = 1, search = '') {
                                                 ${komplain.pesan}
                                             </a>
                                             <a class="btn btn-outline-info btn-sm" href="#">
-                                                ${komplain.updated_at_formatted ? komplain.updated_at_formatted : komplain.created_at_formatted}
+                                               Created at : ${komplain.updated_at_formatted ? komplain.updated_at_formatted : komplain.created_at_formatted}
                                             </a>
                                         </div>
                                     </div>

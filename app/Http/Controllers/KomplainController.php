@@ -98,7 +98,8 @@ class KomplainController extends Controller
     {
         $sort = $request->query('sort', 'newest'); // Default sort: newest
 
-        $query = Komplain::query();
+        $query = Komplain::query()
+            ->where('user_id', auth()->id());
 
         if ($request->has('search') && !empty($request->search)) {
             $search = strtolower($request->search); // Konversi ke huruf kecil untuk pencarian tidak case-sensitive
