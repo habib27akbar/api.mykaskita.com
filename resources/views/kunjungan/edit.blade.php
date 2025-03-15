@@ -53,16 +53,23 @@
 								<div class="form-group mb-3">
 									<textarea class="form-control" name="catatan" cols="30" rows="10" placeholder="Catatan">{{ $kunjungan->catatan }}</textarea>
 								</div>
+								@if ($absensi)
+									<i class="bi bi-check-square-fill" style="color:green; margin-bottom:10px"></i> Sudah Absen
+								@endif
 								<button type="submit" class="btn btn-primary w-100">Kirim Pesan</button>
 							</form>
-							<form method="POST" action="{{ route('kunjungan.destroy', ['kunjungan' => $kunjungan->id]) }}">
-								
-								@method('DELETE')
-								@csrf
-								<button style="margin-top: 10px; background-color:red;" onclick="return confirm('Apakah anda yakin ingin hapus kunjungan ini?')" class="btn btn-danger w-100">Hapus</button>
+							@if ($absensi)
+							@else
+								<form method="POST" action="{{ route('kunjungan.destroy', ['kunjungan' => $kunjungan->id]) }}">
 									
-								
-							</form>
+									@method('DELETE')
+									@csrf
+									<button style="margin-top: 10px; background-color:red;" onclick="return confirm('Apakah anda yakin ingin hapus kunjungan ini?')" class="btn btn-danger w-100">Hapus</button>
+										
+									
+								</form>	
+							@endif
+							
 						</div>
 					</div>
 				</div>

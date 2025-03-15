@@ -130,7 +130,7 @@ function loadProducts(sort = 'newest', page = 1, search = '') {
                                             <small>
                                                Created at : ${kunjungan.updated_at_formatted ? kunjungan.updated_at_formatted : kunjungan.created_at_formatted}
                                             </small>
-                                            ${kunjungan.gambar ? `
+                                            ${kunjungan.gambar_absen ? `
                                                 <i class="bi bi-check-square-fill" style="color:green;"></i> Sudah Absen
                                             ` : `
                                             <a class="btn btn-outline-info btn-sm" href="${urlPath}/${kunjungan.id}/">

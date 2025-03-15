@@ -27,8 +27,9 @@ class KunjunganController extends Controller
         //$foto = Slider::all();
         //dd($sejarah);
         $kunjungan = Kunjungan::findOrFail($id);
+        $absensi =  Absen::where('id_kunjungan', $id);
 
-        return view('kunjungan.edit', compact('kunjungan'));
+        return view('kunjungan.edit', compact('kunjungan', 'absensi'));
     }
 
     public function show($id)
@@ -141,8 +142,13 @@ class KunjunganController extends Controller
 
         $query = Kunjungan::query()
             ->where('kunjungan.user_id', auth()->id())
-            ->leftJoin('absen', 'absen.id_kunjungan', '=', 'kunjungan.id')
-            ->select('kunjungan.*', 'absen.gambar as gambar_absen');
+            ->select('kunjungan.*')
+            ->addSelect([
+                'gambar_absen' => Absen::select('gambar')
+                    ->whereColumn('absen.id_kunjungan', 'kunjungan.id')
+                    ->latest('created_at')
+                    ->limit(1)
+            ]);
 
         if ($request->has('search') && !empty($request->search)) {
             $search = strtolower($request->search); // Konversi ke huruf kecil untuk pencarian tidak case-sensitive
