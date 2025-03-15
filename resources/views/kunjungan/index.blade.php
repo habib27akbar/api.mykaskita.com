@@ -97,16 +97,29 @@ function loadProducts(sort = 'newest', page = 1, search = '') {
                             <div class="card single-product-card">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
-                                        <div class="card-side-img">
-                                            <a class="product-thumbnail d-block" href="${urlPath}/${kunjungan.id}/edit">
-                                                <img src="${assetPath}/${kunjungan.gambar}">
-                                            </a>
+                                        <!-- Gambar Kunjungan (Kiri & Kanan) -->
+                                        <div class="card-side-img d-flex">
+                                            <!-- Gambar Utama -->
+                                            ${kunjungan.gambar ? `
+                                                <a class="product-thumbnail d-block me-2" href="${urlPath}/${kunjungan.id}/edit">
+                                                    <img src="${assetPath}/${kunjungan.gambar}">
+                                                </a>
+                                            ` : ''}
+
+                                            <!-- Gambar Galeri -->
+                                            ${kunjungan.gambar_galeri ? `
+                                                <a class="product-thumbnail d-block" href="${urlPath}/${kunjungan.id}/edit">
+                                                    <img src="${assetPath}/${kunjungan.gambar_galeri}">
+                                                </a>
+                                            ` : ''}
                                         </div>
+
+                                        <!-- Konten -->
                                         <div class="card-content px-4 py-2">
                                             <a class="product-title d-block text-truncate mt-0" href="${urlPath}/${kunjungan.id}/edit">
-                                                ${kunjungan.tempat}
+                                                ${kunjungan.alamat}
                                                 <br/>
-                                                ${kunjungan.catatan}
+                                                ${kunjungan.catatan ? kunjungan.catatan : ''}
                                             </a>
                                             <a class="btn btn-outline-info btn-sm" href="#">
                                                 ${kunjungan.updated_at_formatted ? kunjungan.updated_at_formatted : kunjungan.created_at_formatted}
@@ -116,6 +129,7 @@ function loadProducts(sort = 'newest', page = 1, search = '') {
                                 </div>
                             </div>
                         </div>
+
                     `;
                 });
 

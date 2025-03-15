@@ -40,10 +40,22 @@ class KunjunganController extends Controller
             $image->move(public_path($dir), $nama_image);
         }
 
+        $nama_image_galeri = null;
+        if ($request->file('gambar_galeri')) {
+            $image_galeri = $request->file('gambar_galeri');
+            $nama_image_galeri = 'gambar_galeri-' . uniqid() . '-' . $image_galeri->getClientOriginalName();
+            $dir = 'img/kunjungan';
+            $image_galeri->move(public_path($dir), $nama_image_galeri);
+        }
+
         $storeData = [
             'user_id' => auth()->id(),
-            'pesan' => $request->input('pesan'),
+            'catatan' => $request->input('catatan'),
+            'alamat' => $request->input('alamat'),
+            'longitude' => $request->input('longitude'),
+            'latitude' => $request->input('latitude'),
             'gambar' => $nama_image,
+            'gambar_galeri' => $nama_image_galeri,
             'sts' => 0,
         ];
         Kunjungan::create($storeData);
@@ -60,10 +72,23 @@ class KunjunganController extends Controller
             $dir = 'img/kunjungan';
             $image->move(public_path($dir), $nama_image);
         }
+
+        $nama_image_galeri = $request->input('gambar_galeri_old');
+        if ($request->file('gambar_galeri')) {
+            $image_galeri = $request->file('gambar_galeri');
+            $nama_image_galeri = 'gambar_galeri-' . uniqid() . '-' . $image_galeri->getClientOriginalName();
+            $dir = 'img/kunjungan';
+            $image_galeri->move(public_path($dir), $nama_image_galeri);
+        }
+
         $updateData = [
             'user_id' => auth()->id(),
-            'pesan' => $request->input('pesan'),
-            'gambar' => $nama_image
+            'catatan' => $request->input('catatan'),
+            'alamat' => $request->input('alamat'),
+            'longitude' => $request->input('longitude'),
+            'latitude' => $request->input('latitude'),
+            'gambar' => $nama_image,
+            'gambar_galeri' => $nama_image_galeri,
         ];
         Kunjungan::where('id', $id)->update($updateData);
         return redirect('kunjungan')->with('alert-success', 'Success Update Data');
@@ -75,7 +100,7 @@ class KunjunganController extends Controller
         return redirect('kunjungan')->with('alert-success', 'Success deleted data');
     }
 
-    public function getKomplain(Request $request)
+    public function getKunjungan(Request $request)
     {
         $sort = $request->query('sort', 'newest'); // Default sort: newest
 
