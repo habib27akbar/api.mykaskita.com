@@ -45,7 +45,13 @@
 				<div class="container">
 					<div class="row g-3">
 
-                    
+                        <div class="col-12">
+                            <div class="card single-product-card">
+                                <div class="card-body">
+                                    <h3 style="text-align: center">Loading..</h3>
+                                </div>
+                            </div>
+                        </div>
 						
 					</div>
 				</div>
