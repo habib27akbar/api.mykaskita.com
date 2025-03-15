@@ -25,7 +25,7 @@
 									<label for="file-input">
 										<img src="{{ asset('img/camera-icon.jpg') }}" style="width: 35%" onclick="getLocation()" alt="Camera Icon">
 									</label>
-									<input style="opacity: 0; position: absolute; width: 1px; height: 1px;" id="file-input" class="form-control" type="file" name="gambar" accept="image/*" onchange="loadFile(event)" capture="environment" required>
+									<input style="opacity: 0; position: absolute; width: 1px; height: 1px;" capture id="file-input" class="form-control" type="file" name="gambar" accept="image/*" onchange="loadFile(event)" required>
 									<img id="preview" style="display: none; max-width: 100px; margin-top: 10px;" />
 									<p id="error-message" style="color: red; display: none;">File gambar wajib diunggah!</p>
 									<input type="text" id="latitude" name="latitude" readonly>

@@ -21,7 +21,7 @@ use App\Http\Controllers\KunjunganController;
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->name('login');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/login', [AuthController::class, 'login'])->name('authenticate');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
