@@ -176,7 +176,7 @@
 
 	                        <div class="col-4">
 	                            <div class="feature-card mx-auto text-center">
-	                                <a href="kunjungan.html">
+	                                <a href="{{ route('kunjungan.index') }}">
 	                                    <div class="card mx-auto bg-secondary "><img src="{{ asset('img/icons/kunjungan.png') }}" alt=""></div>
 	                                </a>
 	                                <p class="mb-0">Kunjungan</p>
