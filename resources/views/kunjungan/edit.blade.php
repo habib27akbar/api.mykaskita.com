@@ -51,9 +51,7 @@
 									<input type="text" name="alamat" required class="form-control" placeholder="Tempat" value="{{ $kunjungan->alamat }}">
 								</div>
 								<div class="form-group mb-3">
-									<textarea class="form-control" name="catatan" cols="30" rows="10" placeholder="Catatan">
-										{{ $kunjungan->catatan }}
-									</textarea>
+									<textarea class="form-control" name="catatan" cols="30" rows="10" placeholder="Catatan">{{ $kunjungan->catatan }}</textarea>
 								</div>
 								<button type="submit" class="btn btn-primary w-100">Kirim Pesan</button>
 							</form>
