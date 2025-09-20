@@ -492,21 +492,21 @@ caption {
 
 .btn-warning {
   color: #1f0757;
-  background-color:#F7F234;
-  border-color:#F7F234;
+  background-color:#f1b10f;
+  border-color:#f1b10f;
 }
 
 .btn-warning:hover {
   color: #1f0757;
-  background-color: #e0a800;
-  border-color: #d39e00;
+  background-color: #F7F234;
+  border-color: #F7F234;
 }
 
 .btn-check:focus + .btn-warning,
 .btn-warning:focus {
   color: #1f0757;
-  background-color: #e0a800;
-  border-color: #d39e00;
+  background-color: #F7F234;
+  border-color: #F7F234;
 }
 
 .btn-check:checked + .btn-warning,

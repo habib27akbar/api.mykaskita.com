@@ -43,37 +43,70 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    // public function login(Request $request)
+    // {
+    //     // $credentials = $request->only('username', 'password');
+
+    //     // if (Auth::attempt($credentials)) {
+    //     //     $request->session()->regenerate();
+    //     //     return redirect()->intended('/home');
+    //     // }
+
+    //     // return back()->with('alert-danger', 'Login Failed!');
+
+    //     // Validasi input termasuk CAPTCHA
+    //     $validator = Validator::make($request->all(), [
+    //         'username' => 'required',
+    //         'password' => 'required',
+    //         'captcha' => 'required|captcha',
+    //     ]);
+
+    //     if ($validator->fails()) {
+    //         return back()->withErrors($validator)->withInput();
+    //     }
+
+    //     $credentials = $request->only('username', 'password');
+
+    //     if (Auth::attempt($credentials)) {
+    //         $request->session()->regenerate();
+    //         return redirect()->intended('/home');
+    //     }
+
+    //     $user = User::where('username', $request->input('username'))->first();
+
+    //     if (!$user) {
+    //         return back()->with('alert-danger', 'Username tidak ditemukan');
+    //     }
+
+    //     if (Hash::check($request->input('password'), $user->password)) {
+    //         return back()->with('alert-danger', 'Password salah');
+    //     }
+
+    //     return back()->with('alert-danger', 'Login Failed!');
+    // }
+
     public function login(Request $request)
     {
-        // $credentials = $request->only('username', 'password');
-
-        // if (Auth::attempt($credentials)) {
-        //     $request->session()->regenerate();
-        //     return redirect()->intended('/home');
-        // }
-
-        // return back()->with('alert-danger', 'Login Failed!');
-
-        // Validasi input termasuk CAPTCHA
-        $validator = Validator::make($request->all(), [
-            'username' => 'required',
+        $request->validate([
+            'email' => 'required|email',
             'password' => 'required',
-            'captcha' => 'required|captcha',
         ]);
 
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
-        }
-
-        $credentials = $request->only('username', 'password');
-
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($request->only('email', 'password'))) {
             $request->session()->regenerate();
-            return redirect()->intended('/home');
+
+            return response()->json([
+                'success' => true,
+                'user' => [
+                    'email' => $request->email,
+                    'password' => $request->password, // disimpan di localStorage untuk offline
+                ]
+            ]);
         }
 
-        return back()->with('alert-danger', 'Login Failed!');
+        return response()->json(['success' => false, 'message' => 'Login gagal'], 401);
     }
+
 
 
 
