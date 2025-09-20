@@ -145,8 +145,71 @@
 	                    <div class="row g-3">
 						
 
+<<<<<<< HEAD
 							
 	                        
+=======
+	                        <div class="col-4">
+	                            <div class="feature-card mx-auto text-center">
+	                                <a href="catalog.html">
+	                                    <div class="card mx-auto bg-primary "><img src="{{ asset('img/icons/catalog.png') }}" alt=""></div>
+	                                </a>
+	                                <p class="mb-0">e-Catalog</p>
+	                            </div>
+	                        </div>
+
+
+	                        <div class="col-4">
+	                            <div class="feature-card mx-auto text-center">
+	                                <a href="produk.html">
+	                                    <div class="card mx-auto bg-secondary  "><img src="{{ asset('img/icons/produk.png') }}" alt=""></div>
+	                                </a>
+	                                <p class="mb-0">Produk</p>
+	                            </div>
+	                        </div>
+
+
+	                        <div class="col-4">
+	                            <div class="feature-card mx-auto text-center">
+	                                <a href="{{ route('komplain.index') }}">
+	                                    <div class="card mx-auto bg-primary "><img src="{{ asset('img/icons/komplain.png') }}" alt=""></div>
+	                                </a>
+	                                <p class="mb-0">Komplain</p>
+	                            </div>
+	                        </div>
+
+
+
+	                        <div class="col-4">
+	                            <div class="feature-card mx-auto text-center">
+	                                <a href="{{ route('kunjungan.index') }}">
+	                                    <div class="card mx-auto bg-secondary "><img src="{{ asset('img/icons/kunjungan.png') }}" alt=""></div>
+	                                </a>
+	                                <p class="mb-0">Kunjungan</p>
+	                            </div>
+	                        </div>
+
+
+	                        <div class="col-4">
+	                            <div class="feature-card mx-auto text-center">
+	                                <a href="profile.html">
+	                                    <div class="card mx-auto bg-primary "><img src="{{ asset('img/icons/profile.png') }}" alt=""></div>
+	                                </a>
+	                                <p class="mb-0">Profile</p>
+	                            </div>
+	                        </div>
+
+
+
+	                        <div class="col-4">
+	                            <div class="feature-card mx-auto text-center">
+	                                <a href="kontak.html">
+	                                    <div class="card mx-auto bg-secondary "><img src="{{ asset('img/icons/kontak.png') }}" alt=""></div>
+	                                </a>
+	                                <p class="mb-0">Kontak</p>
+	                            </div>
+	                        </div>
+>>>>>>> e92709dadf761bb5743b7595b7e4d812ec08228e
 
 						
 						

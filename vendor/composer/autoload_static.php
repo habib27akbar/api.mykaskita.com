@@ -558,6 +558,7 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
         'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
         'App\\Http\\Controllers\\CatalogController' => __DIR__ . '/../..' . '/app/Http/Controllers/CatalogController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+<<<<<<< HEAD
         'App\\Http\\Controllers\\HistoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/HistoryController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\KomplainController' => __DIR__ . '/../..' . '/app/Http/Controllers/KomplainController.php',
@@ -570,6 +571,11 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
         'App\\Http\\Controllers\\QrProdukController' => __DIR__ . '/../..' . '/app/Http/Controllers/QrProdukController.php',
         'App\\Http\\Controllers\\ScanProdukController' => __DIR__ . '/../..' . '/app/Http/Controllers/ScanProdukController.php',
+=======
+        'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\KomplainController' => __DIR__ . '/../..' . '/app/Http/Controllers/KomplainController.php',
+        'App\\Http\\Controllers\\KunjunganController' => __DIR__ . '/../..' . '/app/Http/Controllers/KunjunganController.php',
+>>>>>>> e92709dadf761bb5743b7595b7e4d812ec08228e
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -587,6 +593,7 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
         'App\\Models\\ItemCustomer' => __DIR__ . '/../..' . '/app/Models/ItemCustomer.php',
         'App\\Models\\JadwalTeknisi' => __DIR__ . '/../..' . '/app/Models/JadwalTeknisi.php',
         'App\\Models\\Komplain' => __DIR__ . '/../..' . '/app/Models/Komplain.php',
+<<<<<<< HEAD
         'App\\Models\\KomplainKunjungan' => __DIR__ . '/../..' . '/app/Models/KomplainKunjungan.php',
         'App\\Models\\Koordinasi' => __DIR__ . '/../..' . '/app/Models/Koordinasi.php',
         'App\\Models\\Kunjungan' => __DIR__ . '/../..' . '/app/Models/Kunjungan.php',
@@ -594,6 +601,9 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
         'App\\Models\\KunjunganTeknisi' => __DIR__ . '/../..' . '/app/Models/KunjunganTeknisi.php',
         'App\\Models\\ModAlamat' => __DIR__ . '/../..' . '/app/Models/ModAlamat.php',
         'App\\Models\\Penilaian' => __DIR__ . '/../..' . '/app/Models/Penilaian.php',
+=======
+        'App\\Models\\Kunjungan' => __DIR__ . '/../..' . '/app/Models/Kunjungan.php',
+>>>>>>> e92709dadf761bb5743b7595b7e4d812ec08228e
         'App\\Models\\Produk' => __DIR__ . '/../..' . '/app/Models/Produk.php',
         'App\\Models\\UlasanProduk' => __DIR__ . '/../..' . '/app/Models/UlasanProduk.php',
         'App\\Models\\Unit' => __DIR__ . '/../..' . '/app/Models/Unit.php',

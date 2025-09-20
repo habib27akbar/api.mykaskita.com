@@ -12,6 +12,7 @@ return array(
     'App\\Http\\Controllers\\AuthController' => $baseDir . '/app/Http/Controllers/AuthController.php',
     'App\\Http\\Controllers\\CatalogController' => $baseDir . '/app/Http/Controllers/CatalogController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+<<<<<<< HEAD
     'App\\Http\\Controllers\\HistoryController' => $baseDir . '/app/Http/Controllers/HistoryController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\KomplainController' => $baseDir . '/app/Http/Controllers/KomplainController.php',
@@ -24,6 +25,11 @@ return array(
     'App\\Http\\Controllers\\ProfileController' => $baseDir . '/app/Http/Controllers/ProfileController.php',
     'App\\Http\\Controllers\\QrProdukController' => $baseDir . '/app/Http/Controllers/QrProdukController.php',
     'App\\Http\\Controllers\\ScanProdukController' => $baseDir . '/app/Http/Controllers/ScanProdukController.php',
+=======
+    'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+    'App\\Http\\Controllers\\KomplainController' => $baseDir . '/app/Http/Controllers/KomplainController.php',
+    'App\\Http\\Controllers\\KunjunganController' => $baseDir . '/app/Http/Controllers/KunjunganController.php',
+>>>>>>> e92709dadf761bb5743b7595b7e4d812ec08228e
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
@@ -41,6 +47,7 @@ return array(
     'App\\Models\\ItemCustomer' => $baseDir . '/app/Models/ItemCustomer.php',
     'App\\Models\\JadwalTeknisi' => $baseDir . '/app/Models/JadwalTeknisi.php',
     'App\\Models\\Komplain' => $baseDir . '/app/Models/Komplain.php',
+<<<<<<< HEAD
     'App\\Models\\KomplainKunjungan' => $baseDir . '/app/Models/KomplainKunjungan.php',
     'App\\Models\\Koordinasi' => $baseDir . '/app/Models/Koordinasi.php',
     'App\\Models\\Kunjungan' => $baseDir . '/app/Models/Kunjungan.php',
@@ -48,6 +55,9 @@ return array(
     'App\\Models\\KunjunganTeknisi' => $baseDir . '/app/Models/KunjunganTeknisi.php',
     'App\\Models\\ModAlamat' => $baseDir . '/app/Models/ModAlamat.php',
     'App\\Models\\Penilaian' => $baseDir . '/app/Models/Penilaian.php',
+=======
+    'App\\Models\\Kunjungan' => $baseDir . '/app/Models/Kunjungan.php',
+>>>>>>> e92709dadf761bb5743b7595b7e4d812ec08228e
     'App\\Models\\Produk' => $baseDir . '/app/Models/Produk.php',
     'App\\Models\\UlasanProduk' => $baseDir . '/app/Models/UlasanProduk.php',
     'App\\Models\\Unit' => $baseDir . '/app/Models/Unit.php',
