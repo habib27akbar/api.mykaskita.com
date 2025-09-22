@@ -46,21 +46,39 @@ class AiOrchestratorController extends Controller
 
         //dd($penjualanIn->toSql());
 
+        // $penerimaanIn = DB::table('penerimaan as pr')
+        //     ->selectRaw("DATE_FORMAT(pr.tanggal_debet, '%Y-%m') as ym,
+        //     SUM(COALESCE(pr.debet,0)) as total_in")
+        //     ->when($email, fn($q) => $q->where('pr.email', $email))
+        //     ->whereBetween('pr.tanggal_debet', [$start->toDateString(), $end->toDateString()])
+        //     ->groupBy('ym');
+        //->pluck('total_in', 'ym');
+
         $penerimaanIn = DB::table('penerimaan as pr')
             ->selectRaw("DATE_FORMAT(pr.tanggal_debet, '%Y-%m') as ym,
-            SUM(COALESCE(pr.debet,0) - COALESCE(pr.kredit,0)) as total_in")
+            SUM(COALESCE(pr.debet,0)) as total_in")
             ->when($email, fn($q) => $q->where('pr.email', $email))
             ->whereBetween('pr.tanggal_debet', [$start->toDateString(), $end->toDateString()])
             ->groupBy('ym')
             ->pluck('total_in', 'ym');
 
+        //dd($penerimaanIn->toSql(), $penerimaanIn->getBindings());
+
         $jurnalIn = DB::table('jurnal_umum as ju')
-            ->join('master_coa as mc', 'mc.id', '=', 'ju.id_coa_debet')
-            ->selectRaw("DATE_FORMAT(ju.tanggal_debet, '%Y-%m') as ym, SUM(COALESCE(ju.debet,0)) as total_in")
+            ->selectRaw("DATE_FORMAT(ju.tanggal_debet, '%Y-%m') as ym,
+            SUM(COALESCE(ju.debet,0)) as total_in")
             ->when($email, fn($q) => $q->where('ju.email', $email))
             ->whereBetween('ju.tanggal_debet', [$start->toDateString(), $end->toDateString()])
             ->groupBy('ym')
             ->pluck('total_in', 'ym');
+
+        // $jurnalIn = DB::table('jurnal_umum as ju')
+        //     ->join('master_coa as mc', 'mc.id', '=', 'ju.id_coa_debet')
+        //     ->selectRaw("DATE_FORMAT(ju.tanggal_debet, '%Y-%m') as ym, SUM(COALESCE(ju.debet,0)) as total_in")
+        //     ->when($email, fn($q) => $q->where('ju.email', $email))
+        //     ->whereBetween('ju.tanggal_debet', [$start->toDateString(), $end->toDateString()])
+        //     ->groupBy('ym')
+        //     ->pluck('total_in', 'ym');
 
         // =========================
         // CASH-OUT
@@ -78,19 +96,19 @@ class AiOrchestratorController extends Controller
 
         $pengeluaranOut = DB::table('pengeluaran as pg')
             ->selectRaw("DATE_FORMAT(pg.tanggal_kredit, '%Y-%m') as ym,
-            SUM(COALESCE(pg.kredit,0) - COALESCE(pg.debet,0)) as total_out")
+            SUM(COALESCE(pg.kredit,0)) as total_out")
             ->when($email, fn($q) => $q->where('pg.email', $email))
             ->whereBetween('pg.tanggal_kredit', [$start->toDateString(), $end->toDateString()])
             ->groupBy('ym')
             ->pluck('total_out', 'ym');
 
-        $jurnalOut = DB::table('jurnal_umum as ju')
-            ->join('master_coa as mc', 'mc.id', '=', 'ju.id_coa_kredit')
-            ->selectRaw("DATE_FORMAT(ju.tanggal_debet, '%Y-%m') as ym, SUM(COALESCE(ju.kredit,0)) as total_out")
-            ->when($email, fn($q) => $q->where('ju.email', $email))
-            ->whereBetween('ju.tanggal_debet', [$start->toDateString(), $end->toDateString()])
-            ->groupBy('ym')
-            ->pluck('total_out', 'ym');
+        // $jurnalOut = DB::table('jurnal_umum as ju')
+        //     ->join('master_coa as mc', 'mc.id', '=', 'ju.id_coa_kredit')
+        //     ->selectRaw("DATE_FORMAT(ju.tanggal_debet, '%Y-%m') as ym, SUM(COALESCE(ju.kredit,0)) as total_out")
+        //     ->when($email, fn($q) => $q->where('ju.email', $email))
+        //     ->whereBetween('ju.tanggal_debet', [$start->toDateString(), $end->toDateString()])
+        //     ->groupBy('ym')
+        //     ->pluck('total_out', 'ym');
 
         // =========================
         // SUSUN HISTORY BULANAN (IN / OUT / NET)
@@ -105,7 +123,7 @@ class AiOrchestratorController extends Controller
             $ym = $cursor->format('Y-m');
 
             $in  = (float) (($penjualanIn[$ym] ?? 0) + ($penerimaanIn[$ym] ?? 0) + ($jurnalIn[$ym] ?? 0));
-            $out = (float) (($pembelianOut[$ym] ?? 0) + ($pengeluaranOut[$ym] ?? 0) + ($jurnalOut[$ym] ?? 0));
+            $out = (float) (($pembelianOut[$ym] ?? 0) + ($pengeluaranOut[$ym] ?? 0));
             $net = $in - $out;
 
             $labels[]      = $ym;
