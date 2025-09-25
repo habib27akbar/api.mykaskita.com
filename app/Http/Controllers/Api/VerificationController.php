@@ -15,11 +15,14 @@ class VerificationController extends Controller
 {
     public function verify(string $token): JsonResponse
     {
+        //exit;
         $rec = EmailVerification::where('token', $token)->first();
         if (!$rec) return response()->json(['message' => 'Token verifikasi tidak valid'], 404);
 
         $reg = UserRegist::find($rec->email);
         if (!$reg) return response()->json(['message' => 'Pengguna tidak ditemukan'], 404);
+
+
 
         DB::transaction(function () use ($reg, $rec) {
 
@@ -33,6 +36,7 @@ class VerificationController extends Controller
                 'email',
                 'nama',
                 'nama_usaha',
+                'jenis_usaha',
                 'profesi_pekerjaan',
                 'alamat',
                 'no_hp',
@@ -45,6 +49,9 @@ class VerificationController extends Controller
                 'status',
                 'email_verified_at'
             ]);
+
+            // var_dump($copy);
+            // exit;
 
             User::updateOrCreate(
                 ['email' => $reg->email], // kunci upsert

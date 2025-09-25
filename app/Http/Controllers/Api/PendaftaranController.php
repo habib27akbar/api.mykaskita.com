@@ -24,6 +24,7 @@ class PendaftaranController extends Controller
             'email',
             'nama',
             'nama_usaha',
+            'jenis_usaha',
             'profesi_pekerjaan',
             'alamat',
             'no_hp',
@@ -54,6 +55,7 @@ class PendaftaranController extends Controller
             $user->update(array_filter([
                 'nama' => $data['nama'] ?? null,
                 'nama_usaha' => $data['nama_usaha'] ?? null,
+                'jenis_usaha' => $data['jenis_usaha'] ?? null,
                 'profesi_pekerjaan' => $data['profesi_pekerjaan'] ?? null,
                 'alamat' => $data['alamat'] ?? null,
                 'no_hp' => $data['no_hp'] ?? null,
@@ -94,6 +96,7 @@ class PendaftaranController extends Controller
                 'email'              => $user->email,
                 'nama'               => $user->nama,
                 'nama_usaha'         => $user->nama_usaha,
+                'jenis_usaha'        => $user->jenis_usaha,
                 'profesi_pekerjaan'  => $user->profesi_pekerjaan ?? $user->profesi ?? null,
                 'alamat'             => $user->alamat,
                 'no_hp'              => $user->no_hp,
@@ -113,6 +116,7 @@ class PendaftaranController extends Controller
             $updateData = [
                 'nama' =>  $request->nama,
                 'nama_usaha' =>  $request->nama_usaha,
+                'jenis_usaha' =>  $request->jenis_usaha,
                 'profesi_pekerjaan' =>  $request->profesi_pekerjaan,
                 'alamat' =>  $request->alamat,
                 'no_hp' =>  $request->no_hp,
@@ -125,6 +129,7 @@ class PendaftaranController extends Controller
             $updateData = [
                 'nama' =>  $request->nama,
                 'nama_usaha' =>  $request->nama_usaha,
+                'jenis_usaha' =>  $request->jenis_usaha,
                 'profesi_pekerjaan' =>  $request->profesi_pekerjaan,
                 'alamat' =>  $request->alamat,
                 'no_hp' =>  $request->no_hp,

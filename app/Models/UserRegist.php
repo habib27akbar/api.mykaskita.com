@@ -16,6 +16,7 @@ class UserRegist extends Model
         'email',
         'nama',
         'nama_usaha',
+        'jenis_usaha',
         'profesi_pekerjaan',
         'alamat',
         'no_hp',
