@@ -88,6 +88,9 @@ class EmailVerificationController extends Controller
                 // Jika di UserRegist masih plain, lakukan hashing di sini.
                 // $copy['password'] = Hash::needsRehash($copy['password']) ? Hash::make($copy['password']) : $copy['password'];
 
+                // var_dump($copy);
+                // exit;
+
                 User::updateOrCreate(['email' => $reg->email], $copy);
 
                 // Token sekali pakai
@@ -101,7 +104,7 @@ class EmailVerificationController extends Controller
                 'message' => 'Maaf, terjadi kesalahan saat memverifikasi akun. Coba beberapa saat lagi.',
             ]);
         }
-
+        exit;
         // 5) Sukses
         return view('auth.verify-result', [
             'title'   => 'Verifikasi Berhasil',
